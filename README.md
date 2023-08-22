@@ -9,3 +9,4 @@ Guide
 5. Replace the Sheet ID and CSV file ID in code.
 6. Now run the code.
 7. Enjoy your Data!
+8. Also you can set the trigger and fetch data on time intervals. also on daily basis
