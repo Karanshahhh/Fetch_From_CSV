@@ -1,0 +1,22 @@
+function importDataFromCSV() {
+  try {
+    var fileID = "CSV file ID"; // Replace with the ID of your CSV file in Google Drive
+    var sheetName = "Sheet Name"; // Replace with the name of the sheet where you want to import the data
+
+    var file = DriveApp.getFileById(fileID);
+    var csvData = file.getBlob().getDataAsString();
+    var csvParsed = Utilities.parseCsv(csvData);
+
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+
+    // Clear the existing data in the sheet (optional, if you want to replace the data every day)
+    sheet.clear();
+
+    // Write the new data from the CSV file to the sheet
+    sheet.getRange(1, 1, csvParsed.length, csvParsed[0].length).setValues(csvParsed);
+
+    Logger.log("Data imported successfully!");
+  } catch (error) {
+    Logger.log("Error importing data: " + error);
+  }
+}
